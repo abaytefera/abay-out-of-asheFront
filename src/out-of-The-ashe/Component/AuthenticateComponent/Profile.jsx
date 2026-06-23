@@ -138,7 +138,7 @@ console.log("look id")
               <img
                 src={`${API_URL}${formInfo?.avatarUrl} `}
                 alt="Profile"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
               
               {isUploading && (
