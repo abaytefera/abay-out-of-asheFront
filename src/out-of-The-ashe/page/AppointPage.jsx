@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarPlus, faUser, faCalendarAlt,
@@ -13,6 +13,8 @@ import {
   useDeleteAppointmentMutation,
 } from "../../../../Redux/notificationsApi";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const STATUS_STYLE = {
   PENDING:   { cls: "bg-amber-50 text-amber-700 border-amber-200",   label: "Pending"   },
@@ -52,6 +54,8 @@ const AppointmentRow = ({ appt, canManage }) => {
   const [updateStatus] = useUpdateAppointmentStatusMutation();
   const [deleteAppt]   = useDeleteAppointmentMutation();
   const s = STATUS_STYLE[appt.status] || STATUS_STYLE.PENDING;
+
+
 
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-4 space-y-2.5">
@@ -156,6 +160,16 @@ const AppointmentAssignPanel = ({ visitId, canAssign = false }) => {
     }
   };
 
+   const { isAuthenticate } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      if (!isAuthenticate) navigate('/loginpage');
+    }, [isAuthenticate, navigate]);
+  
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
   return (
     <div className="px-6 space-y-3">
       {/* Section header */}

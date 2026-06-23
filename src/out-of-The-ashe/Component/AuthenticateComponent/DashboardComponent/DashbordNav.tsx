@@ -105,6 +105,16 @@ const DashbordNav = () => {
       setFilteruser(User.data);
     }
   }, [User]);
+   const { isAuthenticate } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      if (!isAuthenticate) navigate('/loginpage');
+    }, [isAuthenticate, navigate]);
+  
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
 
   // --- Configuration Arrays ---
   const NavList = [
