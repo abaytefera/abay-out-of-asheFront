@@ -106,7 +106,7 @@ const DashbordNav = () => {
     }
   }, [User]);
    const { isAuthenticate } = useSelector((state) => state.auth);
-    const navigate = useNavigate();
+   
   
     useEffect(() => {
       if (!isAuthenticate) navigate('/loginpage');
