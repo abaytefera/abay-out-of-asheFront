@@ -23,8 +23,8 @@ import {
 import SponsorReport from "./SponsorReport";
 import DashbordNav from "../DashboardComponent/DashbordNav";
 
-import ConfirmDeleteModal from "./ConfirmDeletemodal";
-import EditSponsorModal from "./EditSponsormodal";
+import ConfirmDeleteModal from "./Confirmdeletemodal";
+import EditSponsorModal from "./Editsponsormodal";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

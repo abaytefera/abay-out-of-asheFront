@@ -23,7 +23,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import DashbordNav from "../DashboardComponent/DashbordNav";
-import ConfirmDeleteModal from "./ConfirmDeletemodal";
+import ConfirmDeleteModal from "./Confirmdeletemodal";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const COUNTRIES = [
