@@ -19,6 +19,7 @@ import {
 import DashboardAuditLog from './DashboardAuditLog';
 import AnalyticsDashboard from './AnalyticsDashboard';
 import { useSelector } from 'react-redux';
+const API_URL = import.meta.env.VITE_DEFAULT_BACKEND;
 
 // ─── Types (matching schema + service responses) ─────────────────────────────
 interface ChildStats {
@@ -620,7 +621,7 @@ const DashboardBody = ({
                       .map((emp: any) => (
                         <div key={emp.id} className="flex items-center gap-3 px-5 py-3.5 hover:bg-slate-50/50 transition-colors group">
                           {emp.avatarUrl
-                            ? <img src={`http://localhost:5000${emp.avatarUrl}`} alt="" className="w-9 h-9 rounded-xl object-cover ring-2 ring-slate-100 shrink-0" />
+                            ? <img src={`${API_URL}${emp.avatarUrl}`} alt="" className="w-9 h-9 rounded-xl object-cover ring-2 ring-slate-100 shrink-0" />
                             : <div className="w-9 h-9 rounded-xl bg-primBtn/10 text-primBtn flex items-center justify-center text-sm font-bold shrink-0">
                                 {emp.firstName?.[0]}{emp.lastName?.[0]}
                               </div>
@@ -654,7 +655,7 @@ const DashboardBody = ({
                     return (
                       <div key={child.id} className="flex items-center gap-3 px-5 py-3.5 hover:bg-slate-50/50 transition-colors group">
                         {photo
-                          ? <img src={`http://localhost:5000${photo.url}`} alt="" className="w-9 h-9 rounded-xl object-cover ring-2 ring-slate-100 shrink-0" />
+                          ? <img src={`${API_URL}${photo.url}`} alt="" className="w-9 h-9 rounded-xl object-cover ring-2 ring-slate-100 shrink-0" />
                           : <div className="w-9 h-9 rounded-xl bg-primBtn/5 text-primBtn/40 flex items-center justify-center text-sm shrink-0">
                               <FontAwesomeIcon icon={faChild} />
                             </div>
