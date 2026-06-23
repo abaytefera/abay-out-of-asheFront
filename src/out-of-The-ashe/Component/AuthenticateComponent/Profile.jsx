@@ -6,7 +6,7 @@ import { useGetUserQuery, useUpdateUserMutation, useUpdateProfileMutation } from
 import { useGetEmployeeByIdQuery } from "../../Redux/Employee";
 import { toast, ToastContainer } from "react-toastify";
 import { APi } from "../../Redux/CenteralAPI";
-
+const API_URL = import.meta.env.VITE_DEFAULT_BACKEND;
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const { user } = useSelector((state) => state.auth);
@@ -136,7 +136,7 @@ console.log("look id")
           <div className="relative group">
             <div className="relative w-40 h-40 rounded-[2.5rem] overflow-hidden border-8 border-white shadow-lg bg-white">
               <img
-                src={`http://localhost:5000${formInfo?.avatarUrl} `}
+                src={`${API_URL}${formInfo?.avatarUrl} `}
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
