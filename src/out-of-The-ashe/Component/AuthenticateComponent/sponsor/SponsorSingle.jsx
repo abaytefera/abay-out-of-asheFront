@@ -23,9 +23,9 @@ import {
 import SponsorReport from "./SponsorReport";
 import DashbordNav from "../DashboardComponent/DashbordNav";
 
+import ConfirmDeleteModal from "./ConfirmDeletemodal";
 import EditSponsorModal from "./EditSponsormodal";
 
-import EditSponsorModal from "./EditSponsormodal";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
