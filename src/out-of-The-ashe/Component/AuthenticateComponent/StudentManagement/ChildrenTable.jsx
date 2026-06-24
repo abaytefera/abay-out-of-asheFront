@@ -20,7 +20,6 @@ const Toast = ({ type, message }) => {
     error:   <FontAwesomeIcon icon={faTimesCircle}   className="text-red-500 text-base shrink-0" />,
   };
 
- 
   return (
     <div
       className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-[600] flex items-center gap-3 px-5 py-3 rounded-2xl border shadow-lg text-sm font-semibold ${styles[type]}`}
@@ -45,9 +44,10 @@ const ChildrenTable = ({ childrenData, selectedIds, onToggleSelect, onToggleAll 
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [isDeleting,   setIsDeleting]   = useState(false);
   const [toast,        setToast]        = useState(null);
- const {user}=useSelector((state)=>state.auth)
-  const role=user.role
-  const canDelete=role==="ADMIN"
+  const { user } = useSelector((state) => state.auth);
+  const role = user.role;
+  const canDelete = role === "ADMIN";
+
   // ── derived selection state ──
   const allSelected =
     childrenData?.length > 0 &&
@@ -73,9 +73,6 @@ const ChildrenTable = ({ childrenData, selectedIds, onToggleSelect, onToggleAll 
       setIsDeleting(false);
     }
   };
-
- 
-
 
   return (
     <>
@@ -215,6 +212,7 @@ const ChildrenTable = ({ childrenData, selectedIds, onToggleSelect, onToggleAll 
               <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Code</th>
               <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</th>
               <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">School Name</th>
+              <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Grade</th>
               <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Gender</th>
               <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Emergency Contact</th>
               <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
@@ -240,14 +238,10 @@ const ChildrenTable = ({ childrenData, selectedIds, onToggleSelect, onToggleAll 
 
                   <td className="px-6 py-4">
                     <img
-  src={
- 
-       `${API_URL}${child?.photos[0]?.url}`
-    
-  }
-  alt={child.firstName}
-  className="w-10 h-10 rounded-full object-contain border-2 border-white shadow-sm"
-/>
+                      src={`${API_URL}${child?.photos[0]?.url}`}
+                      alt={child.firstName}
+                      className="w-10 h-10 rounded-full object-contain border-2 border-white shadow-sm"
+                    />
                   </td>
 
                   <td className="px-6 py-4 text-xs font-mono text-slate-500 uppercase">
@@ -269,6 +263,17 @@ const ChildrenTable = ({ childrenData, selectedIds, onToggleSelect, onToggleAll 
                     )}
                   </td>
 
+                  {/* ── Grade column ── */}
+                  <td className="px-6 py-4 text-sm text-slate-600 font-medium">
+                    {child.academicRecords?.[0]?.grade ? (
+                      <span className="text-[11px] font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-0.5 rounded border border-indigo-100">
+                        Grade {child.academicRecords[0].grade}
+                      </span>
+                    ) : (
+                      <span className="text-slate-400 italic text-xs">N/A</span>
+                    )}
+                  </td>
+
                   <td className="px-6 py-4">
                     {child.gender?.toUpperCase() === 'FEMALE' ? (
                       <span className="text-[11px] font-medium text-pink-600 bg-pink-50 px-2 py-0.5 rounded border border-pink-100">Female</span>
@@ -284,17 +289,15 @@ const ChildrenTable = ({ childrenData, selectedIds, onToggleSelect, onToggleAll 
 
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-end gap-2">
-                      {
-                        canDelete &&(
-                      <button
-                        onClick={() => setDeleteTarget(child)}
-                        className="w-9 h-9 rounded-lg border border-red-200 bg-white text-red-400 hover:bg-red-500 hover:text-white hover:border-red-500 transition-all flex items-center justify-center"
-                        title="Delete student"
-                      >
-                        <FontAwesomeIcon icon={faTrash} className="text-xs" />
-                      </button>
-                        )
-            }
+                      {canDelete && (
+                        <button
+                          onClick={() => setDeleteTarget(child)}
+                          className="w-9 h-9 rounded-lg border border-red-200 bg-white text-red-400 hover:bg-red-500 hover:text-white hover:border-red-500 transition-all flex items-center justify-center"
+                          title="Delete student"
+                        >
+                          <FontAwesomeIcon icon={faTrash} className="text-xs" />
+                        </button>
+                      )}
                       <Link to={`/ChildSingle/${child.id}`}>
                         <button className="bg-primBtn cursor-pointer hover:bg-Hover text-white px-4 py-2 rounded-lg text-sm font-medium transition-all inline-flex items-center gap-2">
                           View <span>&rarr;</span>
